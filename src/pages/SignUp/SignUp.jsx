@@ -3,8 +3,6 @@ import { FcGoogle } from 'react-icons/fc'
 import useAuth from '../../hooks/useAuth'
 import { toast } from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
-import axios from 'axios'
-import utils from '../../api/utils'
 import uploadImage from '../../api/utils'
 
 const SignUp = () => {

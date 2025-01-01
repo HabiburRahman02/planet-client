@@ -59,7 +59,8 @@ const AuthProvider = ({ children }) => {
           name: currentUser?.displayName,
           email: currentUser?.email,
           image: currentUser?.photoURL,
-          role: 'Customer'
+          role: 'Customer',
+          loginTime: Date.now()
 
         }
         // store user info in database
