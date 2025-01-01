@@ -3,9 +3,11 @@ import AddPlantForm from '../../../components/Form/AddPlantForm'
 import uploadImage from '../../../api/utils';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import useAuth from '../../../hooks/useAuth';
 
 const AddPlant = () => {
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   const handleAddPlant = async e => {
     e.preventDefault();
@@ -17,8 +19,13 @@ const AddPlant = () => {
     const quantity = form.quantity.value;
     const image = form.image.files[0];
     const imageUrl = await uploadImage(image)
+    const seller = {
+      name: user?.displayName,
+      email: user?.email,
+      photo: user?.photoURL
+    }
     const addPlantData = {
-      name, category, description, price, quantity, imageUrl
+      name, category, description, price, quantity, imageUrl, seller
     }
 
     axiosSecure.post('/plants', addPlantData)
