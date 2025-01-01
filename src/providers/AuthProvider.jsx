@@ -55,6 +55,18 @@ const AuthProvider = ({ children }) => {
       console.log('CurrentUser-->', currentUser?.email)
       if (currentUser?.email) {
         setUser(currentUser)
+        const userInfo = {
+          name: currentUser?.displayName,
+          email: currentUser?.email,
+          image: currentUser?.photoURL,
+          role: 'Customer'
+
+        }
+        // store user info in database
+        axios.post(`http://localhost:9000/users/${currentUser?.email}`, userInfo)
+          .then(data => {
+            console.log(data.data);
+          })
 
         // Get JWT token
         await axios.post(
